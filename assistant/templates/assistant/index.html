@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Code Assistant</title>
+<style>
+body{font-family:Arial;padding:15px;background:#f7f7f7}
+.box{background:white;padding:15px;border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,.1)}
+input{width:100%;padding:10px;margin-top:10px}
+button{width:100%;padding:10px;margin-top:10px;background:#000;color:#fff;border:none}
+pre{background:#eee;padding:10px;border-radius:5px;white-space:pre-wrap}
+.chat{margin-top:15px}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h3>🤖 AI Coding Assistant</h3>
+
+<input id="q" placeholder="Ask for code, bugs, explanations...">
+<button onclick="ask()">Generate</button>
+
+<div id="ans" class="chat"></div>
+</div>
+
+<script>
+function ask(){
+ let q=document.getElementById("q").value;
+ fetch("/ask/?q="+encodeURIComponent(q))
+ .then(r=>r.json())
+ .then(d=>{
+   document.getElementById("ans").innerHTML="<pre>"+d.answer+"</pre>";
+ });
+}
+</script>
+
+</body>
+</html>
