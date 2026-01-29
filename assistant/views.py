@@ -36,7 +36,7 @@ def ask_ai(request):
         messages.append({"role": "assistant", "content": chat.ai_response})
 
     messages.append({"role": "user", "content": question})
-
+    print("client", client.chat)
     completion = client.chat.completions.create(
         model="tngtech/deepseek-r1t2-chimera:free",
         messages=messages,
